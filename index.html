@@ -5,23 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>尹浩然｜个人主页</title>
-  <meta name="description" content="尹浩然的个人主页：物理、光学、冷原子量子模拟、数值计算与 AI 辅助科研。" />
+  <meta name="description" content="尹浩然的个人主页：应用物理、光学、量子模拟、算法优化、数值模拟与科学计算。" />
 
   <style>
     :root {
-      --bg: #08090c;
-      --bg-soft: #101217;
-      --card: rgba(255, 255, 255, 0.055);
-      --card-border: rgba(255, 255, 255, 0.11);
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --muted-2: #71717a;
-      --line: rgba(255, 255, 255, 0.1);
-      --accent: #d6b36a;
-      --accent-soft: rgba(214, 179, 106, 0.16);
+      --bg: #070707;
+      --bg-2: #0d0d0b;
+      --surface: rgba(20, 19, 15, 0.82);
+      --surface-2: rgba(255, 255, 255, 0.045);
+      --line: rgba(214, 179, 106, 0.18);
+      --line-soft: rgba(255, 255, 255, 0.08);
+      --text: #f6f2e8;
+      --muted: #b5ad9b;
+      --muted-2: #847d6f;
+      --gold: #d6b36a;
+      --gold-2: #f2d58c;
       --blue: #8ab4ff;
-      --radius: 24px;
-      --max-width: 1120px;
+      --cyan: #73d7ff;
+      --danger: #ffcf8a;
+      --max: 1160px;
+      --radius: 8px;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.46);
     }
 
     * {
@@ -34,10 +38,6 @@
 
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(214, 179, 106, 0.16), transparent 32%),
-        radial-gradient(circle at 80% 10%, rgba(138, 180, 255, 0.12), transparent 34%),
-        linear-gradient(180deg, #08090c 0%, #0c0d11 48%, #08090c 100%);
       color: var(--text);
       font-family:
         -apple-system,
@@ -47,6 +47,24 @@
         "Microsoft YaHei",
         sans-serif;
       line-height: 1.75;
+      background:
+        linear-gradient(180deg, rgba(214, 179, 106, 0.08), transparent 340px),
+        repeating-linear-gradient(90deg, rgba(214, 179, 106, 0.035) 0 1px, transparent 1px 82px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 82px),
+        linear-gradient(180deg, #070707 0%, #10100d 48%, #070707 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 0%, transparent 46%, rgba(214, 179, 106, 0.08) 46.2%, transparent 47%),
+        linear-gradient(245deg, transparent 0%, transparent 58%, rgba(115, 215, 255, 0.055) 58.2%, transparent 59%);
+      opacity: 0.9;
     }
 
     a {
@@ -54,251 +72,319 @@
       text-decoration: none;
     }
 
-    .page {
-      max-width: var(--max-width);
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
-      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
     }
 
     .nav {
       position: sticky;
       top: 0;
       z-index: 10;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(7, 7, 7, 0.76);
       backdrop-filter: blur(18px);
-      background: rgba(8, 9, 12, 0.72);
-      border-bottom: 1px solid var(--line);
     }
 
     .nav-inner {
-      max-width: var(--max-width);
+      width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
-      padding: 18px 24px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 22px;
     }
 
     .brand {
       display: flex;
-      flex-direction: column;
-      line-height: 1.3;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: var(--gold-2);
+      background: linear-gradient(135deg, rgba(214, 179, 106, 0.16), rgba(255, 255, 255, 0.025));
+      font-weight: 800;
     }
 
     .brand strong {
-      font-size: 18px;
-      letter-spacing: 0.02em;
+      display: block;
+      font-size: 16px;
+      line-height: 1.2;
     }
 
     .brand span {
+      display: block;
+      margin-top: 2px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      line-height: 1.3;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
       color: var(--muted);
       font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav-links a {
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--gold-2);
+      border-color: var(--gold);
     }
 
     .hero {
-      min-height: 72vh;
+      min-height: calc(100vh - 74px);
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 42px;
       align-items: center;
-      padding: 82px 0 46px;
+      padding: 74px 0 58px;
     }
 
-    .eyebrow {
+    .kicker {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(214, 179, 106, 0.28);
-      color: #e7d09a;
+      gap: 12px;
+      color: var(--gold-2);
       font-size: 13px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
     .hero h1 {
-      margin: 26px 0 18px;
-      font-size: clamp(46px, 8vw, 86px);
-      line-height: 1.05;
-      letter-spacing: -0.06em;
+      margin: 22px 0 20px;
+      font-size: 76px;
+      line-height: 1.03;
+      font-weight: 900;
     }
 
     .hero h1 span {
-      color: var(--accent);
+      color: var(--gold);
     }
 
-    .hero-subtitle {
+    .hero-lead {
       max-width: 760px;
-      color: #d4d4d8;
-      font-size: clamp(17px, 2vw, 21px);
+      color: #ddd4c2;
+      font-size: 19px;
       line-height: 1.9;
     }
 
-    .hero-meta {
+    .hero-lead strong {
+      color: var(--gold-2);
+      font-weight: 700;
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 30px 0 0;
+    }
+
+    .info-cell {
+      min-height: 86px;
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .info-cell span {
+      display: block;
+      color: var(--muted-2);
+      font-size: 12px;
+    }
+
+    .info-cell strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
-    }
-
-    .pill {
-      padding: 8px 13px;
-      border: 1px solid var(--card-border);
-      border-radius: 999px;
-      color: #d6d6db;
-      background: rgba(255, 255, 255, 0.045);
-      font-size: 14px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
+      margin-top: 30px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 650;
-      border: 1px solid var(--card-border);
-      transition: transform 0.2s ease, background 0.2s ease, border 0.2s ease;
+      min-height: 46px;
+      padding: 11px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 750;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
+      border-color: rgba(242, 213, 140, 0.7);
     }
 
-    .button-primary {
-      background: var(--accent);
-      color: #171717;
-      border-color: rgba(214, 179, 106, 0.7);
+    .button.primary {
+      color: #0c0a06;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      border-color: rgba(242, 213, 140, 0.8);
     }
 
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
+    .button.secondary {
+      color: var(--gold-2);
+      background: rgba(214, 179, 106, 0.06);
     }
 
-    .profile-card {
-      position: relative;
-      padding: 28px;
+    .profile {
+      border: 1px solid var(--line);
       border-radius: var(--radius);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
-      border: 1px solid var(--card-border);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+        linear-gradient(180deg, rgba(214, 179, 106, 0.12), rgba(255, 255, 255, 0.035)),
+        var(--surface);
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .profile-card::before {
+    .portrait {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: #111;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(0.92) contrast(1.04);
+    }
+
+    .portrait::after {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -50px;
-      top: -50px;
-      background: radial-gradient(circle, rgba(214, 179, 106, 0.28), transparent 68%);
+      inset: 0;
+      border: 14px solid rgba(7, 7, 7, 0.18);
+      pointer-events: none;
     }
 
-    .avatar {
-      width: 82px;
-      height: 82px;
-      border-radius: 24px;
-      background:
-        linear-gradient(135deg, rgba(214, 179, 106, 0.95), rgba(138, 180, 255, 0.85));
-      display: grid;
-      place-items: center;
-      color: #09090b;
-      font-size: 34px;
-      font-weight: 900;
-      margin-bottom: 24px;
+    .profile-body {
+      padding: 22px;
     }
 
-    .profile-card h2 {
+    .profile-body h2 {
       margin: 0 0 8px;
       font-size: 24px;
-      letter-spacing: -0.02em;
     }
 
-    .profile-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid var(--card-border);
-      background: rgba(0, 0, 0, 0.18);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 22px;
-      color: var(--text);
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    section {
-      padding: 54px 0 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 18px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 30px;
-      letter-spacing: -0.035em;
-    }
-
-    .section-head p {
+    .profile-body p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
     }
 
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .metric {
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--gold-2);
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    section {
+      scroll-margin-top: 96px;
+    }
+
+    .section {
+      padding: 58px 0 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
     .grid {
       display: grid;
-      gap: 18px;
+      gap: 16px;
     }
 
     .grid-2 {
@@ -310,65 +396,79 @@
     }
 
     .card {
-      position: relative;
-      padding: 24px;
+      padding: 22px;
+      border: 1px solid var(--line-soft);
       border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      overflow: hidden;
+      background: var(--surface-2);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(214, 179, 106, 0.42);
+      background: rgba(214, 179, 106, 0.06);
     }
 
     .card h3 {
       margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.02em;
+      font-size: 19px;
+      line-height: 1.45;
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
+      line-height: 1.8;
     }
 
     .card ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: #d4d4d8;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
     }
 
     .card li {
+      position: relative;
       margin: 8px 0;
+      padding-left: 16px;
+      color: #d8cfbd;
+      font-size: 14px;
     }
 
-    .project {
-      min-height: 230px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 6px;
+      height: 1px;
+      background: var(--gold);
     }
 
-    .project-index {
-      color: var(--accent);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 22px;
+      align-items: start;
     }
 
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
+    .about-text {
+      color: #ddd4c2;
+      font-size: 16px;
+      line-height: 1.95;
     }
 
-    .tag {
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #c7c7ce;
-      font-size: 12px;
+    .signal {
+      border-left: 2px solid var(--gold);
+      padding: 18px 20px;
+      background: linear-gradient(90deg, rgba(214, 179, 106, 0.1), rgba(255, 255, 255, 0.025));
+      border-radius: var(--radius);
+      color: var(--muted);
+    }
+
+    .signal strong {
+      color: var(--gold-2);
     }
 
     .timeline {
@@ -377,116 +477,240 @@
     }
 
     .timeline-item {
-      padding: 20px 22px;
-      border-radius: 20px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 18px;
+      padding: 20px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
     }
 
-    .timeline-item strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
+    .timeline-time {
+      color: var(--gold-2);
+      font-size: 13px;
+      font-weight: 750;
     }
 
-    .timeline-item span {
+    .timeline-item h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .timeline-item p {
+      margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
+      line-height: 1.85;
     }
 
-    .contact-box {
+    .project-index {
+      margin-bottom: 12px;
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      color: #e6dcc9;
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 12px;
+    }
+
+    .skill-table {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
-    .contact-link {
+    .skill-row {
+      padding: 18px;
+      border-right: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.032);
+    }
+
+    .skill-row:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .skill-row:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+
+    .skill-row strong {
       display: block;
-      padding: 22px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      transition: transform 0.2s ease, border 0.2s ease;
+      color: var(--gold-2);
+      margin-bottom: 8px;
+      font-size: 15px;
     }
 
-    .contact-link:hover {
-      transform: translateY(-2px);
-      border-color: rgba(214, 179, 106, 0.42);
-    }
-
-    .contact-link span {
+    .skill-row span {
       display: block;
       color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.75;
     }
 
-    .contact-link strong {
-      font-size: 17px;
-      word-break: break-all;
+    .contact {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .contact-main {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(214, 179, 106, 0.12), rgba(115, 215, 255, 0.045)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .contact-main h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    .contact-main p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      padding: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .contact-item span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted-2);
+      font-size: 12px;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      word-break: break-word;
     }
 
     footer {
       margin-top: 70px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
+      padding: 26px 0 42px;
+      border-top: 1px solid var(--line-soft);
       color: var(--muted-2);
       font-size: 13px;
       display: flex;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    @media (max-width: 860px) {
-      .hero {
+    @media (max-width: 960px) {
+      .hero,
+      .about,
+      .contact {
         grid-template-columns: 1fr;
+      }
+
+      .hero {
         min-height: auto;
-        padding-top: 58px;
+        padding-top: 46px;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+      }
+
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .wrap,
+      .nav-inner {
+        width: min(var(--max), calc(100% - 28px));
       }
 
       .nav-inner {
+        min-height: auto;
+        padding: 14px 0;
         align-items: flex-start;
         flex-direction: column;
       }
 
       .nav-links {
+        width: 100%;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 10px 14px;
       }
 
-      .grid-2,
-      .grid-3,
-      .contact-box {
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero-lead {
+        font-size: 16px;
+      }
+
+      .quick-info,
+      .metric-grid,
+      .skill-table,
+      .contact-list {
         grid-template-columns: 1fr;
+      }
+
+      .skill-row,
+      .skill-row:nth-child(2n),
+      .skill-row:nth-last-child(-n + 2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .skill-row:last-child {
+        border-bottom: 0;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .actions .button {
+        width: 100%;
       }
 
       .section-head {
         align-items: flex-start;
         flex-direction: column;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .page {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
-      .hero h1 {
-        font-size: 48px;
-      }
-
-      .stat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
       }
     }
   </style>
@@ -495,14 +719,18 @@
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#">
-        <strong>尹浩然</strong>
-        <span>Physics · Optics · Numerical Simulation</span>
+      <a class="brand" href="#top" aria-label="返回首页">
+        <div class="brand-mark">YH</div>
+        <div>
+          <strong>尹浩然</strong>
+          <span>Applied Physics · Quantum Simulation · Scientific Computing</span>
+        </div>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="主导航">
         <a href="#about">关于</a>
-        <a href="#research">研究方向</a>
+        <a href="#research">研究</a>
+        <a href="#experience">经历</a>
         <a href="#projects">项目</a>
         <a href="#skills">技能</a>
         <a href="#contact">联系</a>
@@ -510,128 +738,187 @@
     </div>
   </header>
 
-  <main class="page">
-    <section class="hero" id="about">
+  <main id="top" class="wrap">
+    <section class="hero">
       <div>
-        <div class="eyebrow">Personal Website</div>
+        <div class="kicker">Personal Website</div>
 
         <h1>尹浩然<span>.</span></h1>
 
-        <p class="hero-subtitle">
-          西安交通大学学生，应用物理学背景，光学方向硕士在读。
-          目前主要关注冷原子量子模拟、量子多体系统、偶极玻色气体、
-          Gross-Pitaevskii 方程数值求解，以及 AI 辅助科研与内容生产。
+        <p class="hero-lead">
+          西安交通大学光学方向硕士在读，已获应用物理学学士学位。
+          研究方向聚焦 <strong>量子模拟、算法优化、数值模拟与科学计算</strong>，
+          关注冷原子量子气体、偶极 BEC、Gross-Pitaevskii 方程求解与 AI 辅助科研工作流。
         </p>
 
-        <div class="hero-meta">
-          <span class="pill">西安交通大学</span>
-          <span class="pill">应用物理学</span>
-          <span class="pill">光学方向</span>
-          <span class="pill">冷原子量子模拟</span>
-          <span class="pill">数值计算</span>
+        <div class="quick-info">
+          <div class="info-cell">
+            <span>Education</span>
+            <strong>西安交通大学<br>应用物理 / 光学方向</strong>
+          </div>
+          <div class="info-cell">
+            <span>Research</span>
+            <strong>量子模拟<br>算法优化</strong>
+          </div>
+          <div class="info-cell">
+            <span>Tools</span>
+            <strong>MATLAB / Python<br>Scientific Computing</strong>
+          </div>
         </div>
 
-        <div class="hero-actions">
-          <a class="button button-primary" href="mailto:yhrliverpool626@gmail.com">联系我</a>
-          <a class="button button-secondary" href="https://github.com/yhrliverpool626-web" target="_blank">GitHub 主页</a>
+        <div class="actions">
+          <a class="button primary" href="mailto:1364295819@qq.com">联系我</a>
+          <a class="button secondary" href="resume.pdf" target="_blank" rel="noopener">查看简历 PDF</a>
+          <a class="button secondary" href="https://github.com/yhrliverpool626-web" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
 
-      <aside class="profile-card">
-        <div class="avatar">Y</div>
-        <h2>Research & Projects</h2>
-        <p>
-          以物理建模、数值计算和 AI 工具链为核心，持续构建科研、工程与内容表达能力。
-        </p>
+      <aside class="profile">
+        <div class="portrait">
+          <img src="profile.jpg" alt="尹浩然照片">
+        </div>
 
-        <div class="stat-grid">
-          <div class="stat">
-            <strong>BEC</strong>
-            <span>冷原子与量子气体</span>
-          </div>
-          <div class="stat">
-            <strong>PNCG</strong>
-            <span>基态求解算法</span>
-          </div>
-          <div class="stat">
-            <strong>AI</strong>
-            <span>辅助科研与创作</span>
-          </div>
-          <div class="stat">
-            <strong>Web</strong>
-            <span>个人项目展示</span>
+        <div class="profile-body">
+          <h2>Research & Build</h2>
+          <p>
+            以物理建模为起点，用数值方法和程序实现验证问题；同时探索 AI 工具在科研、代码、写作与可视化中的实际效率。
+          </p>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>BEC</strong>
+              <span>冷原子与量子气体</span>
+            </div>
+            <div class="metric">
+              <strong>GPE</strong>
+              <span>Gross-Pitaevskii 方程</span>
+            </div>
+            <div class="metric">
+              <strong>PNCG</strong>
+              <span>基态求解与算法优化</span>
+            </div>
+            <div class="metric">
+              <strong>AI</strong>
+              <span>辅助科研与内容生产</span>
+            </div>
           </div>
         </div>
       </aside>
     </section>
 
-    <section id="research">
+    <section id="about" class="section">
+      <div class="section-head">
+        <h2>关于我</h2>
+        <p>Profile</p>
+      </div>
+
+      <div class="about">
+        <div class="about-text">
+          我关注的问题通常从物理模型出发，再落到可计算、可复现、可检查的数值流程中。
+          简历中的主线包括导师科研团队的量子模拟与算法优化工作、中科院兰州近代物理研究所实习、
+          长程相互作用量子气体基态数值模拟毕业设计，以及用 MATLAB、Python 与 AI 工具完成参数测试、
+          脚本调试、结果复核和文献整理。
+        </div>
+
+        <div class="signal">
+          <strong>定位：</strong>
+          算法优化 / 物理研发 / 数值模拟 / 科学计算。适合需要把理论问题拆成模型、代码、数据和结果验证流程的任务。
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section">
       <div class="section-head">
         <h2>研究方向</h2>
         <p>Research Interests</p>
       </div>
 
       <div class="grid grid-3">
-        <div class="card">
+        <article class="card">
           <h3>冷原子量子模拟</h3>
-          <p>
-            关注冷原子体系中的量子多体现象、长程相互作用和低温量子态结构。
-          </p>
-        </div>
+          <p>关注冷原子体系中的量子多体现象、长程相互作用、低温量子态结构与数值表征。</p>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <h3>偶极玻色气体</h3>
-          <p>
-            关注偶极相互作用、接触相互作用和 LHY 修正共同作用下的基态结构。
-          </p>
-        </div>
+          <p>围绕偶极相互作用、接触相互作用与 LHY 修正，分析基态结构和密度分布特征。</p>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <h3>量子液滴与超固体</h3>
-          <p>
-            关注量子液滴稳定机制、密度调制、自束缚态以及超固体相关数值表征。
-          </p>
-        </div>
+          <p>关注自束缚态、密度调制、稳定机制以及从模拟结果中提取可解释物理图像。</p>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <h3>GPE 数值求解</h3>
-          <p>
-            围绕 Gross-Pitaevskii 方程及扩展 GPE，开展基态求解、能量泛函和密度分布分析。
-          </p>
-        </div>
+          <p>围绕 Gross-Pitaevskii 方程及扩展 GPE，开展能量泛函、参数扫描与基态求解。</p>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <h3>PNCG 方法</h3>
-          <p>
-            对预条件非线性共轭梯度方法进行实现、测试，并与虚时演化等算法进行效率对比。
-          </p>
-        </div>
+          <p>实现并测试预条件非线性共轭梯度方法，与虚时演化等算法比较收敛速度与稳定性。</p>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <h3>AI 辅助科研</h3>
-          <p>
-            使用 AI 工具辅助文献整理、代码生成、数值实验设计、论文写作和可视化表达。
-          </p>
-        </div>
+          <p>使用 AI 辅助文献整理、代码生成、调试定位、论文写作、图像输出与实验设计。</p>
+        </article>
       </div>
     </section>
 
-    <section id="projects">
+    <section id="experience" class="section">
       <div class="section-head">
-        <h2>项目经历</h2>
+        <h2>经历</h2>
+        <p>Education & Experience</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-time">硕士阶段</div>
+          <div>
+            <h3>西安交通大学｜光学方向硕士在读</h3>
+            <p>研究方向聚焦量子模拟与算法优化，延伸至数值模拟、科学计算和物理建模问题。</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-time">学士阶段</div>
+          <div>
+            <h3>西安交通大学｜应用物理学学士</h3>
+            <p>系统学习量子力学、电磁学、热力学与统计物理、光学等课程，形成物理建模与计算分析基础。</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-time">2023.09 - 至今</div>
+          <div>
+            <h3>西安交通大学导师科研团队｜科研助理</h3>
+            <p>围绕量子模拟与算法优化课题开展基础计算、文献梳理、参数调试与结果整理，支持数值模拟过程验证。</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-time">2024.07 - 2024.08</div>
+          <div>
+            <h3>中国科学院兰州近代物理研究所｜实习研究员</h3>
+            <p>参与强流离子直线加速器六维相空间分布直接测量技术研究，完成数据处理、基础计算、结果核对与资料归档。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h2>项目</h2>
         <p>Selected Projects</p>
       </div>
 
       <div class="grid grid-2">
-        <article class="card project">
-          <div>
-            <div class="project-index">Project 01</div>
-            <h3>PNCG 方法在偶极 BEC 基态求解中的应用</h3>
-            <p>
-              围绕偶极玻色-爱因斯坦凝聚体的基态数值求解，比较 PNCG、虚时演化等方法在收敛速度、能量精度和计算稳定性上的表现。
-            </p>
-          </div>
-          <div class="tag-list">
+        <article class="card">
+          <div class="project-index">Project 01</div>
+          <h3>PNCG 方法在偶极 BEC 基态求解中的应用</h3>
+          <p>围绕偶极玻色-爱因斯坦凝聚体基态求解，比较 PNCG、虚时演化等方法在收敛速度、能量精度和稳定性上的表现。</p>
+          <div class="tags">
             <span class="tag">MATLAB</span>
             <span class="tag">GPE</span>
             <span class="tag">PNCG</span>
@@ -639,131 +926,136 @@
           </div>
         </article>
 
-        <article class="card project">
-          <div>
-            <div class="project-index">Project 02</div>
-            <h3>微信原生日历 / 日程小程序</h3>
-            <p>
-              构建本地优先、可选云同步的日程管理工具，包含月视图、周视图、日视图、搜索筛选、备份恢复与同步状态展示。
-            </p>
-          </div>
-          <div class="tag-list">
-            <span class="tag">微信小程序</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">本地存储</span>
-            <span class="tag">云同步</span>
+        <article class="card">
+          <div class="project-index">Project 02</div>
+          <h3>长程相互作用量子气体基态数值模拟方案探索</h3>
+          <p>从模型设定、参数测试、结果验证到脚本调试，构建可执行的数值模拟流程，支撑毕业设计研究。</p>
+          <div class="tags">
+            <span class="tag">Quantum Gas</span>
+            <span class="tag">Numerical Simulation</span>
+            <span class="tag">AI Debugging</span>
           </div>
         </article>
 
-        <article class="card project">
-          <div>
-            <div class="project-index">Project 03</div>
-            <h3>AI 辅助量化选股框架</h3>
-            <p>
-              搭建包含数据层、因子评分、候选筛选、历史回测和日报输出的量化研究框架，用于验证策略指标和组合表现。
-            </p>
+        <article class="card">
+          <div class="project-index">Project 03</div>
+          <h3>微信原生日历 / 日程小程序</h3>
+          <p>构建本地优先、可选云同步的日程管理工具，包含月视图、周视图、日视图、搜索筛选、备份恢复与同步状态展示。</p>
+          <div class="tags">
+            <span class="tag">微信小程序</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Local First</span>
           </div>
-          <div class="tag-list">
+        </article>
+
+        <article class="card">
+          <div class="project-index">Project 04</div>
+          <h3>AI 辅助量化选股框架</h3>
+          <p>搭建包含数据层、因子评分、候选筛选、历史回测和日报输出的研究框架，用于验证策略指标和组合表现。</p>
+          <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">Data Analysis</span>
             <span class="tag">Backtest</span>
             <span class="tag">Report</span>
           </div>
         </article>
-
-        <article class="card project">
-          <div>
-            <div class="project-index">Project 04</div>
-            <h3>纪录片项目《潮汐之间》</h3>
-            <p>
-              以年轻人的方向感、压力、选择与时代推力为核心议题，规划采访对象、影像结构、旁白文本与分集叙事。
-            </p>
-          </div>
-          <div class="tag-list">
-            <span class="tag">Documentary</span>
-            <span class="tag">Interview</span>
-            <span class="tag">Writing</span>
-            <span class="tag">Storytelling</span>
-          </div>
-        </article>
       </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="section">
       <div class="section-head">
         <h2>技能与工具</h2>
         <p>Skills & Tools</p>
       </div>
 
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>科研与数值计算</h3>
-          <ul>
-            <li>Gross-Pitaevskii 方程与扩展 GPE 数值求解</li>
-            <li>PNCG、虚时演化、能量泛函分析</li>
-            <li>MATLAB 数值模拟与科研图像输出</li>
-            <li>文献复现、参数核对与结果解释</li>
-          </ul>
+      <div class="skill-table">
+        <div class="skill-row">
+          <strong>编程 / 工具</strong>
+          <span>MATLAB、Python、Java（基础）、GitHub Pages、AI 辅助代码生成与调试。</span>
         </div>
 
-        <div class="card">
-          <h3>编程与项目实现</h3>
-          <ul>
-            <li>Python 数据分析与回测框架搭建</li>
-            <li>微信小程序前端与本地数据逻辑</li>
-            <li>GitHub Pages 静态网站部署</li>
-            <li>AI 辅助代码生成、调试与文档整理</li>
-          </ul>
+        <div class="skill-row">
+          <strong>数值与分析</strong>
+          <span>数值模拟、数据处理、科学计算、模型分析、参数测试、结果复核。</span>
+        </div>
+
+        <div class="skill-row">
+          <strong>理论基础</strong>
+          <span>量子力学、电磁学、热力学与统计物理、光学、量子计算基础。</span>
+        </div>
+
+        <div class="skill-row">
+          <strong>奖项 / 证书</strong>
+          <span>大创国家级立项季军、美赛 F 奖、乒乓球阳光杯全国第三名、创业赛校级优秀奖、CET-4 / CET-6。</span>
         </div>
       </div>
     </section>
 
-    <section>
+    <section class="section">
       <div class="section-head">
         <h2>当前关注</h2>
         <p>Current Focus</p>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <strong>冷原子量子气体基态模拟</strong>
-          <span>围绕偶极 BEC、量子液滴和超固体区域开展数值复现与算法比较。</span>
-        </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>冷原子量子气体基态模拟</h3>
+          <p>围绕偶极 BEC、量子液滴和超固体区域开展数值复现、算法比较与结果解释。</p>
+        </article>
 
-        <div class="timeline-item">
-          <strong>AI 与科研工作流结合</strong>
-          <span>探索 AI 在论文写作、文献翻译、代码生成、数值实验规划中的实际效率提升。</span>
-        </div>
+        <article class="card">
+          <h3>AI 与科研工作流结合</h3>
+          <p>探索 AI 在论文写作、文献翻译、代码生成、数值实验规划中的实际效率提升。</p>
+        </article>
 
-        <div class="timeline-item">
-          <strong>个人作品集与公开表达</strong>
-          <span>持续整理科研、工程、内容创作和商业分析项目，形成可展示的个人主页。</span>
-        </div>
+        <article class="card">
+          <h3>个人作品集与公开表达</h3>
+          <p>持续整理科研、工程、内容创作和商业分析项目，形成更完整的个人主页与项目档案。</p>
+        </article>
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section">
       <div class="section-head">
         <h2>联系方式</h2>
         <p>Contact</p>
       </div>
 
-      <div class="contact-box">
-        <a class="contact-link" href="mailto:yhrliverpool626@gmail.com">
-          <span>Email</span>
-          <strong>yhrliverpool626@gmail.com</strong>
-        </a>
+      <div class="contact">
+        <div class="contact-main">
+          <h3>Open to research, engineering and scientific computing work.</h3>
+          <p>
+            可交流方向：算法优化、物理研发、数值模拟、科学计算、AI 辅助科研、项目展示与个人网站扩展。
+          </p>
+        </div>
 
-        <a class="contact-link" href="https://github.com/yhrliverpool626-web" target="_blank">
-          <span>GitHub</span>
-          <strong>github.com/yhrliverpool626-web</strong>
-        </a>
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:1364295819@qq.com">
+            <span>Email</span>
+            <strong>1364295819@qq.com</strong>
+          </a>
+
+          <a class="contact-item" href="mailto:yhrliverpool626@gmail.com">
+            <span>Backup Email</span>
+            <strong>yhrliverpool626@gmail.com</strong>
+          </a>
+
+          <a class="contact-item" href="https://github.com/yhrliverpool626-web" target="_blank" rel="noopener">
+            <span>GitHub</span>
+            <strong>github.com/yhrliverpool626-web</strong>
+          </a>
+
+          <div class="contact-item">
+            <span>Location</span>
+            <strong>中国 · 西安 / 安徽合肥</strong>
+          </div>
+        </div>
       </div>
     </section>
 
     <footer>
       <span>© 2026 尹浩然. All rights reserved.</span>
-      <span>Built with GitHub Pages.</span>
+      <span>Built for GitHub Pages.</span>
     </footer>
   </main>
 </body>
